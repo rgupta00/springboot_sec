@@ -1,0 +1,16 @@
+package com.storeapp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.storeapp.entities.Name1;
+
+@RestController
+public class NameRestController {
+
+	@GetMapping("/v1/name")
+	public Name1 getName1() {
+		return new Name1("rajeev gupta");
+	}
+}

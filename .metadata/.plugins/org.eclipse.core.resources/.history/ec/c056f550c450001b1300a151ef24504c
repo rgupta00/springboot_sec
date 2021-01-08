@@ -1,0 +1,33 @@
+package com.storeapp.entities;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "product_table")
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productId;
+	private String productName;
+	private double productPrice;
+	private double productDiscount;
+	
+	private String productCategory;
+	
+	private LocalDate expiryDate;
+	
+}
+
+
+
+
+
+
+
+

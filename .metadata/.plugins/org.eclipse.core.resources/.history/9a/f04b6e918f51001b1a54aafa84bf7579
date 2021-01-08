@@ -1,0 +1,33 @@
+package com.bookapp.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+@EnableWebSecurity
+public class SecConfig  extends WebSecurityConfigurerAdapter{
+
+	//authentication
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//right now i am using hard coded username password
+		auth.inMemoryAuthentication()
+		.withUser("raj").password("raj123").roles("ADMIN")
+		.and()
+		.withUser("ekta").password("ekta123").roles("MGR")
+		.and()
+		.withUser("gunika").password("gun123").roles("CLERK");
+	}
+	
+	@Bean
+	public PasswordEncoder getEncoder() {
+		return NoOpPasswordEncoder.getInstance(); //it means that it is for testing purpose only
+	}
+	
+
+	// authorization
+	
+}

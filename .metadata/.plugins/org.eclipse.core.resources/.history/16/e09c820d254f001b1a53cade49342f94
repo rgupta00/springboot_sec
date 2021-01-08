@@ -1,0 +1,8 @@
+package com.demo.entities;
+
+public class Parking {
+	private int pid;
+	private String loc;
+	
+	
+}

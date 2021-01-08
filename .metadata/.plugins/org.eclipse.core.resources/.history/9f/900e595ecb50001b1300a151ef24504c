@@ -1,0 +1,48 @@
+package com.storeapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.*;
+
+import com.storeapp.entities.Product;
+import com.storeapp.service.ProductService;
+
+
+//..........8070/storeapp/api/product
+@RestController
+@RequestMapping("api")
+public class ProductRestController {
+
+	private ProductService productService;
+
+	@Autowired
+	public ProductRestController(ProductService productService) {
+		this.productService = productService;
+	}
+	
+	@GetMapping(path="product", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Product> getAllProducts(){
+		List<Product> products=productService.getAllProduct();
+		return products;
+	}
+	
+	@GetMapping(path="product/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Product getProductById(@PathVariable(name = "id")int productId){
+		Product product=productService.getProductById(productId);
+		return product;
+	}
+	
+}
+
+
+
+
+
+
+
+

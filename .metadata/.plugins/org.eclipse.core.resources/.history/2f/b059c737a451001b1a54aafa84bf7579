@@ -1,0 +1,8 @@
+package com.bookapp.config;
+
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
+
+public class MyAuthEntryPoint extends BasicAuthenticationEntryPoint{
+
+	
+}

@@ -1,0 +1,7 @@
+package com.storeapp;
+
+import org.springframework.boot.CommandLineRunner;
+
+public class DBInitilizer implements CommandLineRunner {
+
+}

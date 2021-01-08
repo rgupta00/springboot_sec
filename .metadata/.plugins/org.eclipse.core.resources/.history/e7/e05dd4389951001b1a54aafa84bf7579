@@ -1,0 +1,19 @@
+package com.bookapp.service;
+
+import com.bookapp.repo.User;
+
+public class UserServiceImpl implements UserService{
+
+	@Override
+	public User findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

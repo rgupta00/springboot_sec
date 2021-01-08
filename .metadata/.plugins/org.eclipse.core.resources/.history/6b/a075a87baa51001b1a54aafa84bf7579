@@ -1,0 +1,8 @@
+package com.bookapp.service;
+
+import com.bookapp.repo.AppUser;
+
+public interface AppUserService {
+	public AppUser findByUserName(String userName);
+	public void addUser(AppUser appUser);
+}

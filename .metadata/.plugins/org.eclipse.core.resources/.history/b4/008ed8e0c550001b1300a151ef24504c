@@ -1,0 +1,5 @@
+package com.storeapp.service;
+
+public class ProductServiceImpl {
+
+}

@@ -1,0 +1,21 @@
+package com.bookapp.model.controller;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookapp.model.dao.Book;
+
+//REST
+@RestController //	@RestController=@Controller+ @ResponseBody
+public class BookRestController {
+
+	@GetMapping("book")
+	public Book getBook() {
+		Book book=new Book(12, "java", "raj", 100.00, "abc", new Date());
+		return book;
+	}
+}

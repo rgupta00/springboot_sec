@@ -1,0 +1,53 @@
+package com.storeapp.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.storeapp.entities.Product;
+import com.storeapp.exceptions.ResourceNotFoundException;
+import com.storeapp.repo.ProductRepo;
+@Service
+@Transactional
+public class ProductServiceImpl implements ProductService{
+
+	private ProductRepo productRepo;
+	
+	@Autowired
+	public ProductServiceImpl(ProductRepo productRepo) {
+		this.productRepo = productRepo;
+	}
+
+	@Override
+	public Product getProductById(int productId) {
+		 productRepo.
+	}
+
+	@Override
+	public Product getProductByProductName(String productName) {
+		return null;
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+		return null;
+	}
+
+	@Override
+	public Product addProduct(Product product) {
+		return null;
+	}
+
+	@Override
+	public Product updateProduct(int productId, Product product) {
+		return null;
+	}
+
+	@Override
+	public Product deleteProduct(int productId) {
+		return null;
+	}
+
+}

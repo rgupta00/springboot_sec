@@ -1,0 +1,11 @@
+package com.demo;
+
+import java.util.Date;
+
+public class DemoDateVsLocalDate {
+
+	public static void main(String[] args) {
+		Date date=new Date("13/13/13");
+		System.out.println(date);
+	}
+}

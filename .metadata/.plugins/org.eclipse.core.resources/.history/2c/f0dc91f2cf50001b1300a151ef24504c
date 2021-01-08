@@ -1,0 +1,6 @@
+package com.storeapp.exceptions;
+
+public class ErrorDetail {
+	private String errorMessage;
+	private 
+}

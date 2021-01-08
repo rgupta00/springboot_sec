@@ -1,0 +1,79 @@
+package com.storeapp.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.storeapp.entities.Product;
+import com.storeapp.exceptions.ResourceNotFoundException;
+import com.storeapp.repo.ProductRepo;
+
+@Service
+@Transactional
+public class ProductServiceImpl implements ProductService {
+
+	private ProductRepo productRepo;
+
+	@Autowired
+	public ProductServiceImpl(ProductRepo productRepo) {
+		this.productRepo = productRepo;
+	}
+
+	@Cacheable(value = "products", key = "#productId")
+	@Override
+	public Product getProductById(int productId) {
+		return productRepo.findById(productId)
+				.orElseThrow
+				(() -> new ResourceNotFoundException("product with id:" + productId + " is not found"));
+	}
+
+	@Override
+	public Product getProductByProductName(String productName) {
+		return null;
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+		return productRepo.findAll();
+	}
+
+	@CachePut(value = "products", key = "#result.productId")
+	@Override
+	public Product addProduct(Product product) {
+		productRepo.save(product);
+		return product;
+	}
+
+	@CachePut(value = "products", key = "#result.productId")
+	@Override
+	public Product updateProduct(int productId, Product product) {
+		Product productToUpdate = getProductById(productId);
+		productToUpdate.setProductPrice(product.getProductPrice());
+		productToUpdate.setProductDiscount(product.getProductDiscount());
+
+		productRepo.save(productToUpdate);
+		return productToUpdate;
+	}
+
+	@CacheEvict(value = "products", key="#productId")
+	@Override
+	public Product deleteProduct(int productId) {
+		Product productToDelete = getProductById(productId);
+		productRepo.delete(productToDelete);
+		return productToDelete;
+	}
+
+	//how to call this method periodically?
+	// spring boot scheduled process: cron job linux system
+	
+	@CacheEvict(value = "products", allEntries = true)
+	@Override
+	public void evictCache() {
+	}
+
+}

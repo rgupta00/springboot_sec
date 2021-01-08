@@ -1,0 +1,20 @@
+package com.bookapp.model.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookapp.model.dao.Name;
+
+@RestController
+public class HelloVersioning {
+
+	@GetMapping("/name")
+	public String getName() {
+		return "rajeev gupta";
+	}
+	
+	@GetMapping("/name")
+	public Name getNameByObject() {
+		return new Name("rajeev", "gupta");
+	}
+}

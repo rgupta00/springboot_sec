@@ -1,0 +1,16 @@
+package com.bookapp.repo;
+
+import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "appuser_table")
+public class AppUser {
+	private Integer id;
+	private String userName;
+	private String password;
+	
+	private List<String> roles=new ArrayList<>();
+}

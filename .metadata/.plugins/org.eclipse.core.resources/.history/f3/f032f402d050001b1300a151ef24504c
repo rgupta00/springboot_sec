@@ -1,0 +1,12 @@
+package com.storeapp.exceptions;
+
+import java.time.LocalDateTime;
+
+public class ErrorDetail {
+	private String errorMessage;
+	private String contact;
+	private String message;
+	private LocalDateTime timeStamp;
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.storeapp.repo;
+
+public interface ProductRepo {
+
+}

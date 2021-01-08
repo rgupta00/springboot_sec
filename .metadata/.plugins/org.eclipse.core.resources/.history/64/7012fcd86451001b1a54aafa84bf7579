@@ -1,0 +1,98 @@
+package com.storeapp.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.storeapp.entities.Product;
+import com.storeapp.service.ProductService;
+
+
+//..........8070/storeapp/api/product
+@RestController
+@RequestMapping("api")
+public class ProductRestController {
+
+	private ProductService productService;
+
+	@Autowired
+	public ProductRestController(ProductService productService) {
+		this.productService = productService;
+	}
+	//---------all product----------
+	@GetMapping(path="product", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Product>> getAllProducts(){
+		List<Product> products=productService.getAllProduct();
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+	
+	//--------- productbyId----------
+	@GetMapping(path="product/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> getProductById(@PathVariable(name = "id")int productId){
+		Product product=productService.getProductById(productId);
+		return ResponseEntity.ok(product);
+	}
+	
+	@GetMapping(path="product2/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityModel<Product> getProductByIdV2(@PathVariable(name = "id")int productId){
+		//....../storeapp/api/product2/7
+		Link link=linkTo(methodOn(ProductRestController.class).getProductByIdV2(productId))
+				.withSelfRel();
+		System.out.println("----------------------------");
+		System.out.println(link.toString());
+		Product product=productService.getProductById(productId);
+		product.add(link);
+		return EntityModel.of(product);
+	}
+	
+	
+	
+	//---------add new product----------
+	@PostMapping(path="product", produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes  = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> addProduct(@Valid  @RequestBody Product product){
+		Product productAdded=productService.addProduct(product);
+		return new ResponseEntity(productAdded, HttpStatus.CREATED);
+	}
+
+	//---------update product----------
+	@PutMapping(path="product/{id}", produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes  = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> updateProduct(@PathVariable(name = "id")int productId, @RequestBody Product product){
+		Product updatedProduct=productService.updateProduct(productId, product);
+		return new ResponseEntity(updatedProduct, HttpStatus.OK);
+	}
+
+	//---------del product---------
+	@DeleteMapping(path="product/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> deleteProduct(@PathVariable(name = "id")int productId){
+		Product productDeleted=productService.deleteProduct(productId);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+}
+
+
+
+
+
+
+
+

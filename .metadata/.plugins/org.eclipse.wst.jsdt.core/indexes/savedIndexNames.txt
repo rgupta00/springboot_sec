@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/raj/Documents/spring_21/hcl/basicboot/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2833563924.index
+4271235593.index
+1451009272.index
+1114713691.index
+893150588.index
+4118105774.index

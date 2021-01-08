@@ -1,0 +1,15 @@
+package com.storeapp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class ProductController {
+
+	@GetMapping("products")
+	public ModelAndView hello(ModelAndView mv) {
+		mv.setViewName("allproducts");
+		mv.addObject("message", "spring mvc hello world");
+	}
+}

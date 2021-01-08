@@ -1,0 +1,118 @@
+package com.storeapp.entities;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "product_table")
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer productId;
+	@Column(name = "product_name", nullable = false, length = 100)
+	@Size(min = 4, max = 50, message = "product size must be between 4 to 50 char")
+	private String productName;
+	
+	@Column(name = "product_price", nullable = false, length = 100)
+	private double productPrice;
+	
+	@Column(name = "product_discount", nullable = false, length = 100)
+	private double productDiscount;
+	
+	@Column(name = "product_category", nullable = false, length = 100)
+	private String productCategory;
+	
+	@Future
+	@Column(name = "product_exp_date", nullable = false)
+	private LocalDate expiryDate;
+
+	@Column(name = "product_qty", nullable = false)
+	private int productQuantity;
+	
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public double getProductDiscount() {
+		return productDiscount;
+	}
+
+	public void setProductDiscount(double productDiscount) {
+		this.productDiscount = productDiscount;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public Product(String productName, double productPrice, double productDiscount, String productCategory,
+			LocalDate expiryDate, int productQuantity) {
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productDiscount = productDiscount;
+		this.productCategory = productCategory;
+		this.expiryDate = expiryDate;
+		this.productQuantity=productQuantity;
+	}
+	
+	
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+
+	public Product() {}
+
+}
+
+
+
+
+
+
+
+
