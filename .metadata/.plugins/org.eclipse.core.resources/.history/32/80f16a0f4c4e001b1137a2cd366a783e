@@ -1,5 +1,0 @@
-package com.bookapp.model.dao.exceptions;
-
-public class ErrorDetails {
-
-}

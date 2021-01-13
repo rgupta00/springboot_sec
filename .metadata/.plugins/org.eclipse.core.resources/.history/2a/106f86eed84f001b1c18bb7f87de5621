@@ -1,7 +1,0 @@
-package com.demo.dto;
-
-public class DeptEmpInfoResponse {
-	private String dname;
-	private String name;
-	private double salary;
-}

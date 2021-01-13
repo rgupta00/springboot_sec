@@ -1,9 +1,0 @@
-package com.bookapp.model.dao;
-
-public class Name {
-	private String firstName;
-	private String lastName;
-	
-	
-	
-}
